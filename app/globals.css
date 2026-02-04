@@ -1,3 +1,24 @@
+/* Bouton Télécharger PDF style 2048 */
+.cv-download-btn {
+  background: #fab387; /* var(--ctp-peach) du 2048 */
+  color: #24273a;     /* var(--ctp-base) du 2048 */
+  font-size: 15px;
+  font-weight: 700;
+  padding: 0 22px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 2px 8px #0002;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+}
+.cv-download-btn:hover {
+  opacity: 0.93;
+  transform: translateY(-1px);
+}
 @media print {
     html, body, .cv-paper {
       font-size: 1.15em !important;

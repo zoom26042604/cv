@@ -1,7 +1,7 @@
 'use client';
 
 import { ExternalLink, Github } from 'lucide-react';
-import { cvData } from '@/data/cv-data';
+import { cvData } from '../data/cv-data';
 
 export default function Projects() {
   const { projetsPerso, projetsEtudiant } = cvData;

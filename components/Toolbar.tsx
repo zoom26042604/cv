@@ -28,42 +28,35 @@ export default function Toolbar() {
     window.print();
   };
 
-  // react-to-print gère l'impression PDF
+  // Un seul bouton orange pour télécharger le PDF
   return (
-    <div className="no-print fixed top-4 right-4 flex items-center gap-2 z-50">
-      <button
-        onClick={() => setIsDark(!isDark)}
-        className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
-        title={isDark ? 'Light Mode' : 'Dark Mode'}
-      >
-        {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
-
+    <div className="no-print fixed top-6 right-8 z-50" style={{ pointerEvents: 'none' }}>
       <a
         href="/cv.pdf"
         download="CV_Nathan_FERRE.pdf"
-        className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
-        title="Télécharger PDF (A4, haute qualité)"
+        className="cv-download-btn"
+        style={{
+          background: '#fab387',
+          color: '#24273a',
+          fontSize: 15,
+          fontWeight: 700,
+          padding: '0 22px',
+          height: 48,
+          border: 'none',
+          borderRadius: 8,
+          cursor: 'pointer',
+          transition: 'all 0.15s',
+          boxShadow: '0 2px 8px #0002',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.7em',
+          marginRight: 0,
+          marginTop: 0,
+          pointerEvents: 'auto',
+        }}
       >
         <Download size={20} />
-      </a>
-
-      <button
-        onClick={handlePrint}
-        className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
-        title="Imprimer"
-      >
-        <Printer size={20} />
-      </button>
-
-      <a
-        href="https://nathan-ferre.fr"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
-        title="Voir Portfolio"
-      >
-        <ExternalLink size={20} />
+        Télécharger le CV en PDF
       </a>
     </div>
   );

@@ -1,20 +1,36 @@
-import Header from '@/components/Header';
-import Education from '@/components/Education';
-import Projects from '@/components/Projects';
-import Skills from '@/components/Skills';
-import LanguagesAndInterests from '@/components/LanguagesAndInterests';
-import ToolbarClientWrapper from '@/components/ToolbarClientWrapper';
-import { cvData } from '@/data/cv-data';
+"use client";
+import { useEffect } from "react";
+import Header from '../components/Header';
+import Education from '../components/Education';
+import Projects from '../components/Projects';
+import Skills from '../components/Skills';
+import ToolbarClientWrapper from '../components/ToolbarClientWrapper';
+import { cvData } from '../data/cv-data';
 
 export default function Home() {
+  useEffect(() => {
+    function sendHeight() {
+      window.parent.postMessage({
+        type: 'cvHeight',
+        height: document.body.scrollHeight
+      }, '*');
+    }
+    sendHeight();
+    window.addEventListener('resize', sendHeight);
+    const observer = new MutationObserver(sendHeight);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+    return () => {
+      window.removeEventListener('resize', sendHeight);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <ToolbarClientWrapper />
-      
       <main className="cv-container">
         <div className="cv-paper" id="cv-content">
           <Header />
-          
           {/* Summary */}
           <div className="cv-body">
             <div className="col-span-2" style={{ gridColumn: '1 / -1' }}>
@@ -24,7 +40,6 @@ export default function Home() {
               </section>
             </div>
           </div>
-          
           {/* Main Content - Two columns */}
           <div className="cv-body" style={{ paddingTop: 0 }}>
             {/* Colonne gauche */}

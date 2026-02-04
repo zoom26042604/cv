@@ -80,7 +80,7 @@ export const cvData: CVData = {
     linkedin: 'nathan-ferre-0ba3a438a',
     avatar: '/photo.jpg',
     summary: `Étudiant en informatique passionné à Ynov Toulouse. 
-    J'aime créer develloper et mettre en place des solutions, sites et applications en tout genres. Curieux et Patient, je suis toujours à la recherche de nouveaux défis et opportunités d'apprendre de nouvelles choses.`,
+    J'aime développer et mettre en place des solutions, sites et applications en tous genres. Curieux et patient, je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.`,
   },
   experience: [],
   education: [
@@ -102,6 +102,7 @@ export const cvData: CVData = {
       location: 'Blagnac, France',
       startDate: 'sept. 2021',
       endDate: 'juill. 2024',
+      description: "Obtention d'un baccalauréat STI2D (Sciences et Technologies de l'Industrie et du Développement Durable).",
       achievements: [],
     },
   ],

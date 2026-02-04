@@ -9,7 +9,7 @@ import {
   Phone,
   User
 } from 'lucide-react';
-import { cvData } from '@/data/cv-data';
+import { cvData } from '../data/cv-data';
 import Image from 'next/image';
 
 export default function Header() {

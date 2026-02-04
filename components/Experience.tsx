@@ -1,6 +1,6 @@
 'use client';
 
-import { cvData } from '@/data/cv-data';
+import { cvData } from '../data/cv-data';
 
 export default function Experience() {
   const { experience } = cvData;
