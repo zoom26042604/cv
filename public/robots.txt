@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cv.nathanferre.dev/sitemap.xml
+Sitemap: https://cv.nathan-ferre.fr/sitemap.xml
