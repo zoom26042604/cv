@@ -1,0 +1,47 @@
+# ================================
+# DOCKER COMPOSE - ADMIN DASHBOARD
+# ================================
+
+services:
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: admin-dashboard
+    restart: unless-stopped
+    networks:
+      - zoom2604_network
+    environment:
+      - NODE_ENV=production
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - ADMIN_DB_NAME=${ADMIN_DB_NAME}
+      - NEXTAUTH_URL=https://${DOMAIN}/admin
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - AUTH_TRUST_HOST=true
+      - PROMETHEUS_URL=http://prometheus:9090
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      
+      # Router pour /admin path
+      - "traefik.http.routers.admin.rule=Host(`${DOMAIN}`) && PathPrefix(`/admin`)"
+      - "traefik.http.routers.admin.entrypoints=websecure"
+      - "traefik.http.routers.admin.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.admin.middlewares=admin-stripprefix,security-headers"
+      - "traefik.http.services.admin.loadbalancer.server.port=3000"
+    depends_on:
+      - postgres
+      - redis
+      - prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--tries=1", "--spider", "http://localhost:3000/admin/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+networks:
+  zoom2604_network:
+    external: true

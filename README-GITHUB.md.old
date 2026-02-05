@@ -1,0 +1,56 @@
+# Admin Dashboard - Déploiement GitHub
+
+## 🚀 Configuration GitHub
+
+### 1. Créer le repository GitHub
+
+```bash
+# Sur GitHub.com, créer un nouveau repo:
+# Nom: admin-dashboard
+# Description: Admin Dashboard for managing applications
+# Privé: ✅
+```
+
+### 2. Push le code
+
+```bash
+cd /srv/zoom2604.dev/admin
+
+# Ajouter le remote GitHub
+git remote add origin git@github.com:TON-USERNAME/admin-dashboard.git
+
+# Push le code
+git add .
+git commit -m "Initial commit: Admin Dashboard"
+git push -u origin main
+```
+
+### 3. Variables d'environnement (GitHub Secrets)
+
+Pour le CI/CD, ajouter dans **Settings > Secrets and variables > Actions** :
+
+```
+DATABASE_URL=postgresql://...
+NEXTAUTH_SECRET=...
+NEXTAUTH_URL=https://zoom2604.dev/admin
+```
+
+## 📦 Structure du projet
+
+```
+admin/
+├── app/              # Next.js App Router
+├── components/       # React components
+├── lib/             # Utilities & helpers
+├── prisma/          # Database schema
+├── public/          # Static files
+├── Dockerfile       # Docker config
+└── docker-compose.yml
+```
+
+## 🔄 Workflow de déploiement
+
+1. **Développement local** : `npm run dev`
+2. **Commit & Push** : Git push vers GitHub
+3. **Auto-deploy** : GitHub Actions rebuild & restart
+4. **Production** : https://zoom2604.dev/admin
