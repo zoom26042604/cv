@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: '/cv',
   output: 'standalone',
   compress: true,
   poweredByHeader: false,
@@ -9,7 +8,6 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
-  assetPrefix: '/cv',
 };
 
 export default nextConfig;
