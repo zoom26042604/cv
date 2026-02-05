@@ -33,6 +33,7 @@ export interface Education {
   location: string;
   startDate: string;
   endDate: string;
+  description?: string;
   gpa?: string;
   achievements?: string[];
 }
@@ -63,6 +64,8 @@ export interface CVData {
   experience: Experience[];
   education: Education[];
   projects: Project[];
+  projetsPerso: Project[];
+  projetsEtudiant: Project[];
   skills: Skill[];
   languages: Language[];
   interests?: string[];

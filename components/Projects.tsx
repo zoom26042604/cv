@@ -1,12 +1,12 @@
 'use client';
 
 import { ExternalLink, Github } from 'lucide-react';
-import { cvData } from '../data/cv-data';
+import { cvData, Project } from '../data/cv-data';
 
 export default function Projects() {
   const { projetsPerso, projetsEtudiant } = cvData;
 
-  function getProjectDuration(project) {
+  function getProjectDuration(project: Project) {
     if (!project.startDate) return '';
     const start = new Date(project.startDate);
     const end = project.endDate ? new Date(project.endDate) : new Date();

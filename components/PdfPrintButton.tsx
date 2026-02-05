@@ -1,23 +1,32 @@
 "use client";
 
-import * as ReactToPrintModule from 'react-to-print';
-const ReactToPrint = ReactToPrintModule.default || ReactToPrintModule;
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import { Download } from 'lucide-react';
 
 export default function PdfPrintButton() {
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  const handlePrint = useReactToPrint({
+    contentRef,
+    documentTitle: "CV_Nathan_FERRE",
+  });
+
+  // On utilise useEffect pour assigner la ref au bon élément
+  if (typeof window !== 'undefined') {
+    const cvContent = document.getElementById('cv-content');
+    if (cvContent && contentRef.current !== cvContent) {
+      (contentRef as any).current = cvContent;
+    }
+  }
+
   return (
-    <ReactToPrint
-      trigger={() => (
-        <button
-          className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
-          title="Télécharger PDF"
-        >
-          <Download size={20} />
-        </button>
-      )}
-      content={() => document.getElementById('cv-content') as HTMLDivElement}
-      documentTitle="CV_Nathan_FERRE"
-      pageStyle="@page { size: A4; margin: 0; }"
-    />
+    <button
+      onClick={handlePrint}
+      className="p-2 rounded-lg bg-[var(--cv-surface)] border border-[var(--cv-border)] text-[var(--cv-text)] hover:border-[var(--cv-primary)] transition-colors"
+      title="Télécharger PDF"
+    >
+      <Download size={20} />
+    </button>
   );
 }
