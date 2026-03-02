@@ -81,7 +81,7 @@ export const cvData: CVData = {
     website: 'https://nathan-ferre.fr',
     github: 'zoom26042604',
     linkedin: 'nathan-ferre-0ba3a438a',
-    avatar: '/photo.jpg',
+    avatar: '/profile.jpg',
     summary: `Étudiant en informatique passionné à Ynov Toulouse. 
     J'aime développer et mettre en place des solutions, sites et applications en tous genres. Curieux et patient, je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.`,
   },
