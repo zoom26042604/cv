@@ -1,32 +1,8 @@
-
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { Moon, Sun, Printer, Download, ExternalLink } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export default function Toolbar() {
-  const [isDark, setIsDark] = useState(false);
-  const printRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const stored = localStorage.getItem('cv-theme');
-    if (stored) {
-      setIsDark(stored === 'dark');
-    } else {
-      setIsDark(true); // dark by default
-    }
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark);
-    localStorage.setItem('cv-theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
-
-  const handlePrint = () => {
-    window.print();
-  };
-
-  // Un seul bouton orange pour télécharger le PDF
   return (
     <div className="no-print fixed top-6 right-8 z-50" style={{ pointerEvents: 'none' }}>
       <a

@@ -243,7 +243,7 @@ body {
 }
 
 .cv-header h1 {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -252,7 +252,7 @@ body {
 }
 
 .cv-header-title {
-  font-size: 1rem;
+  font-size: 1.12rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.02em;
@@ -281,7 +281,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: white;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.14);
@@ -331,7 +331,7 @@ body {
 }
 
 .cv-section-title {
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -364,24 +364,24 @@ body {
 
 .cv-entry-title {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1.08rem;
   color: #1a1a1a;
 }
 
 .cv-entry-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.97rem;
   color: #6b7280;
 }
 
 .cv-entry-date {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #9ca3af;
   white-space: nowrap;
   border-radius: 0 !important;
 }
 
 .cv-entry-description {
-  font-size: 0.85rem;
+  font-size: 0.97rem;
   color: #4b5563;
   margin-top: 0.5rem;
 }
@@ -416,8 +416,8 @@ body {
   padding: 0.25rem 0.75rem;
   background: #f3f4f6;
   border-radius: 6px;
-  padding: 0.18rem 0.5rem;
-  font-size: 0.8rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.92rem;
   color: #4b5563;
   font-weight: 500;
 }
@@ -436,7 +436,7 @@ body {
 
 .cv-language-name {
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 1.02rem;
 }
 
 .cv-flag {
@@ -452,7 +452,7 @@ body {
 }
 
 .cv-language-level {
-  font-size: 0.85rem;
+  font-size: 0.97rem;
   color: #6b7280;
 }
 
@@ -473,7 +473,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -488,12 +488,12 @@ body {
 
 .cv-tech-tag {
   display: inline-block;
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: #6b7280;
   background: #e5e7eb;
   border-radius: 4px;
-  padding: 0.1rem 0.4rem;
+  padding: 0.12rem 0.45rem;
 }
 
 .cv-icon-btn {
