@@ -12,53 +12,20 @@ const A4_HEIGHT_PX = 1123;
   });
   const page = await browser.newPage();
 
-  await page.evaluateOnNewDocument(() => {
-    localStorage.setItem('cv-theme', 'light');
-  });
-
   await page.setViewport({ width: A4_WIDTH_PX, height: A4_HEIGHT_PX, deviceScaleFactor: 1 });
 
   await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 60000 });
 
   await page.emulateMediaType('screen');
 
+  // Force light theme for PDF
   await page.evaluate(() => {
     document.documentElement.classList.remove('dark');
-    localStorage.setItem('cv-theme', 'light');
   });
 
-  // Calcule le zoom CSS pour tenir sur une seule page A4
-  const contentHeight = await page.evaluate(() => {
-    const el = document.getElementById('cv-content');
-    return el ? el.scrollHeight : document.body.scrollHeight;
-  });
-
-  const zoom = contentHeight > A4_HEIGHT_PX
-    ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
-    : 1;
-
-  console.log(`Hauteur contenu: ${contentHeight}px, A4: ${A4_HEIGHT_PX}px, zoom: ${zoom}`);
-
+  // Hide dev UI overlays
   await page.addStyleTag({
     content: `
-      html, body {
-        background: #ffffff !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      .cv-container {
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      .cv-paper {
-        width: 210mm !important;
-        max-width: none !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        zoom: ${zoom} !important;
-        transform-origin: top left !important;
-      }
       .no-print,
       nextjs-portal,
       next-route-announcer,
@@ -68,6 +35,46 @@ const A4_HEIGHT_PX = 1123;
       [data-nextjs-dialog-overlay] {
         display: none !important;
         visibility: hidden !important;
+      }
+    `,
+  });
+
+  // Measure natural content height at A4 width
+  const contentHeight = await page.evaluate(() => {
+    const el = document.getElementById('cv-content');
+    return el ? el.scrollHeight : document.body.scrollHeight;
+  });
+
+  const zoom = contentHeight > A4_HEIGHT_PX
+    ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
+    : 1;
+
+  // Paper width expanded so that after zoom it visually equals A4 width
+  const paperWidthPx = zoom < 1 ? Math.round(A4_WIDTH_PX / zoom) : A4_WIDTH_PX;
+
+  console.log(`Hauteur contenu: ${contentHeight}px, A4: ${A4_HEIGHT_PX}px, zoom: ${zoom}, paperWidth: ${paperWidthPx}px`);
+
+  await page.addStyleTag({
+    content: `
+      html {
+        zoom: ${zoom} !important;
+      }
+      html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .cv-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
+      }
+      .cv-paper {
+        width: ${paperWidthPx}px !important;
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
       }
     `,
   });

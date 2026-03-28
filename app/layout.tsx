@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "CV interactif de Nathan FERRE - Etudiant en Informatique",
   keywords: ["CV", "Resume", "Etudiant", "Informatique", "Nathan FERRE"],
   authors: [{ name: "Nathan FERRE" }],
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     title: "CV - Nathan FERRE | Etudiant en Informatique",
     description: "CV interactif de Nathan FERRE - Etudiant en Informatique",
@@ -26,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark">
       <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
