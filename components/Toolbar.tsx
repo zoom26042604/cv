@@ -9,13 +9,11 @@ export default function Toolbar() {
   const printRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check system preference
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const stored = localStorage.getItem('cv-theme');
     if (stored) {
       setIsDark(stored === 'dark');
     } else {
-      setIsDark(prefersDark);
+      setIsDark(true); // dark by default
     }
   }, []);
 
