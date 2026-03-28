@@ -56,13 +56,13 @@ export default function Header() {
           {personal.github && (
             <a href={`https://github.com/${personal.github}`} target="_blank" rel="noopener noreferrer">
               <FaGithub size={13} />
-              GitHub
+              {personal.github}
             </a>
           )}
           {personal.linkedin && (
-            <a href="https://www.linkedin.com/in/nathan-ferre-0ba3a438a/" target="_blank" rel="noopener noreferrer">
+            <a href={`https://www.linkedin.com/in/${personal.linkedin}`} target="_blank" rel="noopener noreferrer">
               <FaLinkedin size={13} />
-              LinkedIn
+              {personal.linkedin}
             </a>
           )}
         </div>

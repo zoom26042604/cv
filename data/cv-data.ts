@@ -75,7 +75,7 @@ export interface CVData {
 export const cvData: CVData = {
   personal: {
     name: 'Nathan FERRE',
-    title: "Étudiant en recherche d'alternance/stage en Technicien DevOps",
+    title: "Étudiant en informatique, en recherche de alternance/stage",
     email: 'nathanferre06@gmail.com',
     phone: '+33 7 85 90 46 45',
     location: 'Toulouse, France',
