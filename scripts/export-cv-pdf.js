@@ -51,8 +51,9 @@ const A4_HEIGHT_PX = 1123;
       return el ? el.scrollHeight : document.body.scrollHeight;
     });
 
-    const newZoom = contentHeight > A4_HEIGHT_PX
-      ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
+    const TARGET_H = A4_HEIGHT_PX - 15; // buffer to avoid page break
+    const newZoom = contentHeight > TARGET_H
+      ? Math.round((TARGET_H / contentHeight) * 100) / 100
       : 1;
     const newPaper = newZoom < 1 ? Math.round(A4_WIDTH_PX / newZoom) : A4_WIDTH_PX;
 
