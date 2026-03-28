@@ -15,8 +15,8 @@ export default function Header() {
         <Image
           src={personal.avatar}
           alt={personal.name}
-          width={145}
-          height={178}
+          width={105}
+          height={130}
           className="cv-photo"
         />
       ) : (
