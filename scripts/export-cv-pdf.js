@@ -2,23 +2,23 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
   const page = await browser.newPage();
 
-  // Force le thème clair avant le chargement pour éviter un PDF en mode sombre
   await page.evaluateOnNewDocument(() => {
     localStorage.setItem('cv-theme', 'light');
   });
 
-  // A4 width at 96 DPI = 210mm * 96 / 25.4 ≈ 794px
+  // A4 width at 96 DPI
   await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
 
-  await page.goto('http://localhost:3000', { waitUntil: 'networkidle0' });
+  await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 60000 });
 
-  // Force le CSS screen (pas print) pour avoir le même rendu que le navigateur
   await page.emulateMediaType('screen');
 
-  // Sécurise le rendu clair et masque les overlays/devtools de Next en mode dev
   await page.evaluate(() => {
     document.documentElement.classList.remove('dark');
     localStorage.setItem('cv-theme', 'light');
@@ -28,6 +28,21 @@ const path = require('path');
     content: `
       html, body {
         background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .cv-container {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .cv-paper {
+        width: 210mm !important;
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
       }
 
       .no-print,
@@ -43,7 +58,6 @@ const path = require('path');
     `,
   });
 
-  // Hauteur réelle du contenu CV
   const contentHeight = await page.evaluate(() => {
     const el = document.getElementById('cv-content');
     return el ? el.scrollHeight : document.body.scrollHeight;
@@ -54,11 +68,10 @@ const path = require('path');
   await page.pdf({
     path: outputPath,
     printBackground: true,
-    width: '195mm',
-    height: `${contentHeight}px`,
+    format: 'A4',
     margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' },
   });
 
   await browser.close();
-  console.log('cv.pdf généré dans public/');
+  console.log('cv.pdf genere dans public/');
 })();
