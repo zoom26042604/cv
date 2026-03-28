@@ -1,6 +1,10 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
 
+// A4 at 96 DPI : 210mm x 297mm
+const A4_WIDTH_PX  = 794;
+const A4_HEIGHT_PX = 1123;
+
 (async () => {
   const browser = await puppeteer.launch({
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
@@ -12,8 +16,7 @@ const path = require('path');
     localStorage.setItem('cv-theme', 'light');
   });
 
-  // A4 width at 96 DPI
-  await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 1 });
+  await page.setViewport({ width: A4_WIDTH_PX, height: A4_HEIGHT_PX, deviceScaleFactor: 1 });
 
   await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 60000 });
 
@@ -31,12 +34,10 @@ const path = require('path');
         margin: 0 !important;
         padding: 0 !important;
       }
-
       .cv-container {
         padding: 0 !important;
         margin: 0 !important;
       }
-
       .cv-paper {
         width: 210mm !important;
         max-width: none !important;
@@ -44,7 +45,6 @@ const path = require('path');
         box-shadow: none !important;
         border-radius: 0 !important;
       }
-
       .no-print,
       nextjs-portal,
       next-route-announcer,
@@ -58,10 +58,17 @@ const path = require('path');
     `,
   });
 
+  // Calcule le scale pour tenir sur une seule page A4
   const contentHeight = await page.evaluate(() => {
     const el = document.getElementById('cv-content');
     return el ? el.scrollHeight : document.body.scrollHeight;
   });
+
+  const scale = contentHeight > A4_HEIGHT_PX
+    ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
+    : 1;
+
+  console.log(`Hauteur contenu: ${contentHeight}px, A4: ${A4_HEIGHT_PX}px, scale: ${scale}`);
 
   const outputPath = path.join(__dirname, '../public/cv.pdf');
 
@@ -69,6 +76,7 @@ const path = require('path');
     path: outputPath,
     printBackground: true,
     format: 'A4',
+    scale: scale,
     margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' },
   });
 
