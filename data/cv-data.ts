@@ -164,7 +164,7 @@ export const cvData: CVData = {
   skills: [
     {
       category: 'Hard Skills',
-      items: [ 'Docker', 'Node.js', 'Python', 'SQL', 'Git', 'Figma', 'Linux', 'Golang', 'HTML/CSS/JS'],
+      items: [ 'Docker', 'Node.js', 'Express', 'Python', 'SQL', 'Git', 'Figma', 'Linux', 'Golang', 'HTML/CSS/JS', 'React', 'TailwindCSS', 'PHP', 'C++', 'Java', 'Postman'],
     },
     {
       category: 'Soft Skills',
