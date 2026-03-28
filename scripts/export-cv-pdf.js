@@ -27,6 +27,18 @@ const A4_HEIGHT_PX = 1123;
     localStorage.setItem('cv-theme', 'light');
   });
 
+  // Calcule le zoom CSS pour tenir sur une seule page A4
+  const contentHeight = await page.evaluate(() => {
+    const el = document.getElementById('cv-content');
+    return el ? el.scrollHeight : document.body.scrollHeight;
+  });
+
+  const zoom = contentHeight > A4_HEIGHT_PX
+    ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
+    : 1;
+
+  console.log(`Hauteur contenu: ${contentHeight}px, A4: ${A4_HEIGHT_PX}px, zoom: ${zoom}`);
+
   await page.addStyleTag({
     content: `
       html, body {
@@ -44,6 +56,8 @@ const A4_HEIGHT_PX = 1123;
         margin: 0 !important;
         box-shadow: none !important;
         border-radius: 0 !important;
+        zoom: ${zoom} !important;
+        transform-origin: top left !important;
       }
       .no-print,
       nextjs-portal,
@@ -58,25 +72,12 @@ const A4_HEIGHT_PX = 1123;
     `,
   });
 
-  // Calcule le scale pour tenir sur une seule page A4
-  const contentHeight = await page.evaluate(() => {
-    const el = document.getElementById('cv-content');
-    return el ? el.scrollHeight : document.body.scrollHeight;
-  });
-
-  const scale = contentHeight > A4_HEIGHT_PX
-    ? Math.round((A4_HEIGHT_PX / contentHeight) * 100) / 100
-    : 1;
-
-  console.log(`Hauteur contenu: ${contentHeight}px, A4: ${A4_HEIGHT_PX}px, scale: ${scale}`);
-
   const outputPath = path.join(__dirname, '../public/cv.pdf');
 
   await page.pdf({
     path: outputPath,
     printBackground: true,
     format: 'A4',
-    scale: scale,
     margin: { top: '0px', right: '0px', bottom: '0px', left: '0px' },
   });
 
