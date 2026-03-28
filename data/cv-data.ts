@@ -155,7 +155,7 @@ export const cvData: CVData = {
       id: 'exp-tennis',
       name: 'Initiateur fédéral de tennis',
       type: 'professional',
-      description: 'Encadrement de 3 groupes de 4 à 5 joueurs par semaine (~15 joueurs au total), tous niveaux, de l\'enfant au senior.\nTitulaire du brevet d\'initiateur fédéral de la Fédération Française de Tennis (FFT).',
+      description: 'Encadrement de 3 groupes de 4 à 6 joueurs par semaine, tous niveaux, de l\'enfant au senior.\nTitulaire du brevet d\'initiateur fédéral de la Fédération Française de Tennis (FFT).',
       technologies: [],
       startDate: '2023-09-01',
       endDate: '',
