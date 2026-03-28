@@ -125,6 +125,6 @@ MIT License
 
 **Nathan FERRE**
 
-- Site : [nathan-ferre.fr](https://nathan-ferre.fr)
+- Site : [nathan-ferre.fr](https://nathan-ferre.fr/cv)
 - GitHub : [@zoom26042604](https://github.com/zoom26042604)
 - Email : nathanferre06@gmail.com

@@ -23,6 +23,7 @@ export interface Experience {
   endDate: string | 'Present';
   description: string[];
   technologies?: string[];
+  type?: 'student' | 'personal' | 'professional';
 }
 
 export interface Education {
@@ -43,6 +44,7 @@ export interface Project {
   name: string;
   description: string;
   technologies: string[];
+  type?: 'student' | 'personal' | 'professional';
   url?: string;
   github?: string;
   startDate?: string;
@@ -56,7 +58,8 @@ export interface Skill {
 
 export interface Language {
   name: string;
-  level: 'Native' | 'Fluent' | 'Advanced' | 'Intermediate' | 'Basic' | 'B2' | 'B1' | 'A2' | 'A1';
+  level: 'Maternelle' | 'Native' | 'Fluent' | 'Advanced' | 'Intermediate' | 'Basic' | 'B2' | 'B1' | 'A2' | 'A1';
+  flag?: string;
 }
 
 export interface CVData {
@@ -64,8 +67,6 @@ export interface CVData {
   experience: Experience[];
   education: Education[];
   projects: Project[];
-  projetsPerso: Project[];
-  projetsEtudiant: Project[];
   skills: Skill[];
   languages: Language[];
   interests?: string[];
@@ -74,16 +75,16 @@ export interface CVData {
 export const cvData: CVData = {
   personal: {
     name: 'Nathan FERRE',
-    title: 'Etudiant en Informatique',
-    email: 'nathan.ferre@ynov.com',
+    title: "Étudiant en recherche d'alternance/stage en Technicien DevOps",
+    email: 'nathanferre06@gmail.com',
     phone: '+33 7 85 90 46 45',
     location: 'Toulouse, France',
     website: 'https://nathan-ferre.fr',
     github: 'zoom26042604',
     linkedin: 'nathan-ferre-0ba3a438a',
     avatar: '/profile.jpg',
-    summary: `Étudiant en informatique passionné à Ynov Toulouse. 
-    J'aime développer et mettre en place des solutions, sites et applications en tous genres. Curieux et patient, je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.`,
+    summary: `Étudiant en informatique passionné, à Ynov Toulouse.
+    J'aime développer et mettre en place des solutions, sites et applications en tout genre. Curieux et patient, je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.`,
   },
   experience: [],
   education: [
@@ -95,7 +96,7 @@ export const cvData: CVData = {
       location: 'Toulouse, France',
       startDate: 'sept. 2024',
       endDate: 'juill. 2027',
-      description: "Actuellement en deuxième année d'études à Toulouse Ynov Campus, je prépare un bachelor 3 spécialisé en infrastructure."
+      description: "Actuellement en deuxième année d'études à Ynov Campus Toulouse, je prépare un bachelor 3 spécialisé en infrastructure."
     },
     {
       id: 'edu-2',
@@ -109,11 +110,30 @@ export const cvData: CVData = {
       achievements: [],
     },
   ],
-  projetsEtudiant: [
+  projects: [
+    {
+      id: 'proj-1',
+      name: 'Homelab',
+      type: 'personal',
+      description: 'Infrastructure personnelle hébergée sur un cluster Kubernetes (k3s), avec déploiement continu via ArgoCD, monitoring Grafana/Prometheus et reverse proxy Traefik.',
+      technologies: ['Kubernetes', 'k3s', 'ArgoCD', 'Helm', 'Traefik', 'Grafana', 'Prometheus', 'Linux'],
+      startDate: '2025-01-01',
+      endDate: '',
+    },
+    {
+      id: 'proj-3',
+      name: 'GitLab',
+      type: 'personal',
+      description: "Déploiement et configuration d'une instance GitLab sur un VPS OVH.",
+      technologies: ['OVH', 'GitLab', 'Kubernetes', 'Linux'],
+      startDate: '2025-08-15',
+      endDate: '',
+    },
     {
       id: 'forum-1',
       name: 'Forum - web',
-      description: `Réalisation d'un forum grâce à HTML/CSS/JS, Golang et MySQL\nDéployé grâce à Docker et un VPS OVH pour héberger le tout.\n\nProjet réalisé en 3 semaines en équipe de 4 personnes.`,
+      type: 'student',
+      description: `Conception d'un forum grâce à HTML/CSS/JS, Golang et MySQL\nDéployé grâce à Docker et un VPS OVH pour héberger le tout.\n\nProjet accompli en trois semaines en équipe de quatre personnes.`,
       technologies: ['HTML', 'JS', 'CSS', 'Golang', 'MySQL', 'Docker'],
       url: '',
       github: '',
@@ -123,47 +143,24 @@ export const cvData: CVData = {
     {
       id: 'ymuse-1',
       name: 'Ymuse',
-      description: `Jeu RPG en troisième personne, mix Genshin Impact x Guitar Hero, réalisé sur Unity.\n Développeur C# chargé de la mécanique de combat, d'items et d'inventaire.`,
+      type: 'student',
+      description: `Développement d'un jeu RPG 3D en équipe sur Unity (8 mois de projet).\nConception et implémentation en C# du système de combat, de la gestion d'inventaire et des mécaniques d'objets.`,
       technologies: ['Unity', 'C#'],
       url: '',
       github: '',
+      startDate: '2024-09-01',
+      endDate: '2025-06-01',
+    },
+    {
+      id: 'exp-tennis',
+      name: 'Initiateur fédéral de tennis',
+      type: 'professional',
+      description: 'Encadrement de 3 groupes de 4 à 5 joueurs par semaine (~15 joueurs au total), tous niveaux, de l\'enfant au senior.\nTitulaire du brevet d\'initiateur fédéral de la Fédération Française de Tennis (FFT).',
+      technologies: [],
       startDate: '2023-09-01',
-      endDate: '2024-05-01',
-    },
-  ],
-  projetsPerso: [
-    {
-      id: 'proj-1',
-      name: '2048 Game',
-      description: 'Jeu 2048 moderne avec classement et statistiques.',
-      technologies: ['Next.js', 'TypeScript', 'Prisma', 'SQLite', 'Framer Motion'],
-      url: 'https://2048.zoom2604.dev',
-      github: 'https://github.com/zoom26042604/game-2048',
-      startDate: '2025-12-21',
-      endDate: '',
-    },
-    {
-      id: 'proj-2',
-      name: 'Portfolio Personnel',
-      description: 'Site portfolio responsive présentant mes projets et compétences avec thème Catppuccin.',
-      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-      url: 'https://nathan-ferre.fr',
-      github: 'https://github.com/zoom26042604/azrael',
-      startDate: '2025-06-22',
-      endDate: '',
-    },
-    {
-      id: 'proj-3',
-      name: 'CV Interactif',
-      description: 'Ce CV ! Un CV web avec support impression et mode sombre.',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-      url: 'https://nathan-ferre.fr/cv',
-      github: 'https://github.com/zoom26042604/cv',
-      startDate: '2025-08-15',
       endDate: '',
     },
   ],
-  projects: [],
   skills: [
     {
       category: 'Hard Skills',
@@ -175,8 +172,8 @@ export const cvData: CVData = {
     },
   ],
   languages: [
-    { name: 'Français', level: 'Native' },
-    { name: 'Anglais', level: 'B2' },
+    { name: 'Français', level: 'Maternelle', flag: 'fr' },
+    { name: 'Anglais', level: 'B2', flag: 'gb' },
   ],
-  interests: ['Lecture', 'Tennis', 'Nourriture', 'Gaming', 'Technologies' ],
+  interests: ['Lecture', 'Sport', 'Nourriture', 'Gaming', 'Technologies' ],
 };

@@ -45,22 +45,12 @@ export default function Home() {
             {/* Colonne gauche */}
             <div>
               <Projects />
-              {/* Langues en bas à gauche */}
-              <section className="cv-section">
-                <h2 className="cv-section-title">Langues</h2>
-                {cvData.languages.map((lang) => (
-                  <div key={lang.name} className="cv-language-item">
-                    <span className="cv-language-name">{lang.name}</span>
-                    <span className="cv-language-level">{lang.level}</span>
-                  </div>
-                ))}
-              </section>
             </div>
             {/* Colonne droite */}
             <div>
               <Skills />
               <Education />
-              {/* Centres d'intérêt sous les formations */}
+              {/* Centres d'intérêt */}
               {cvData.interests && cvData.interests.length > 0 && (
                 <section className="cv-section">
                   <h2 className="cv-section-title">Centres d'intérêt</h2>
@@ -71,6 +61,16 @@ export default function Home() {
                   </div>
                 </section>
               )}
+              {/* Langues sous les centres d'intérêt */}
+              <section className="cv-section">
+                <h2 className="cv-section-title">Langues</h2>
+                {cvData.languages.map((lang) => (
+                  <div key={lang.name} className="cv-language-item">
+                    <span className="cv-language-name">{lang.flag && <span className={`fi fi-${lang.flag} cv-flag`} />}{lang.name}</span>
+                    <span className="cv-language-level">{lang.level}</span>
+                  </div>
+                ))}
+              </section>
             </div>
           </div>
         </div>
