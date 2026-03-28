@@ -14,7 +14,7 @@ const A4_HEIGHT_PX = 1123;
 
   await page.setViewport({ width: A4_WIDTH_PX, height: A4_HEIGHT_PX, deviceScaleFactor: 1 });
 
-  await page.goto('http://localhost:3000', { waitUntil: 'networkidle0', timeout: 60000 });
+  await page.goto('http://10.43.193.251', { waitUntil: 'networkidle0', timeout: 60000 });
 
   await page.emulateMediaType('screen');
 
