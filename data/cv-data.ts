@@ -81,7 +81,7 @@ export const cvData: CVData = {
     location: 'Toulouse, France',
     website: 'https://nathan-ferre.fr',
     github: 'zoom26042604',
-    linkedin: 'nathan-ferre-0ba3a438a',
+    linkedin: 'nathan-ferre',
     avatar: '/profile.jpg',
     summary: `Étudiant en informatique passionné, à Ynov Toulouse.
     J'aime développer et mettre en place des solutions, sites et applications en tout genre. Curieux et patient, je suis toujours à la recherche de nouveaux défis et d'opportunités d'apprentissage.`,
