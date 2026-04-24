@@ -44,12 +44,12 @@ export default function Home() {
           <div className="cv-body" style={{ paddingTop: 0 }}>
             {/* Colonne gauche */}
             <div>
+              <Education />
               <Projects />
             </div>
             {/* Colonne droite */}
             <div>
               <Skills />
-              <Education />
               {/* Centres d'intérêt */}
               {cvData.interests && cvData.interests.length > 0 && (
                 <section className="cv-section">
