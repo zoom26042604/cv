@@ -10,14 +10,12 @@ export default function Education() {
       <h2 className="cv-section-title">Formation</h2>
       {education.map((edu) => (
         <div key={edu.id} className="cv-entry">
-          <div className="cv-entry-header">
-            <div>
-              <div className="cv-entry-title">{edu.degree} - {edu.field}</div>
-              <div className="cv-entry-subtitle">{edu.institution} • {edu.location}</div>
-            </div>
+          <div className="cv-entry-header" style={{ flexDirection: 'column', gap: '0.2rem' }}>
+            <div className="cv-entry-title">{edu.degree} - {edu.field}</div>
             <span className="cv-entry-date">
               {edu.startDate} – {edu.endDate}
             </span>
+            <div className="cv-entry-subtitle">{edu.institution} • {edu.location}</div>
           </div>
           {edu.description && (
             <p className="cv-entry-description" style={{ fontStyle: 'italic', marginTop: '0.3rem' }}>{edu.description}</p>
