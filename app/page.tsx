@@ -44,8 +44,8 @@ export default function Home() {
           <div className="cv-body" style={{ paddingTop: 0 }}>
             {/* Colonne gauche */}
             <div>
-              <Education />
               <Projects />
+              <Education />
             </div>
             {/* Colonne droite */}
             <div>

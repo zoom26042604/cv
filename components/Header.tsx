@@ -29,6 +29,7 @@ export default function Header() {
       <div className="cv-header-content">
         <h1>{personal.name}</h1>
         <div className="cv-header-title">{personal.title}</div>
+        {personal.subtitle && <div className="cv-header-subtitle">{personal.subtitle}</div>}
         <div className="cv-header-divider" />
 
         {/* Contact Info */}
